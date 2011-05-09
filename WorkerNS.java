@@ -24,19 +24,21 @@ public class WorkerNS extends Thread {
 
 			Estrutura str = (Estrutura) in.readObject();
 			
-			adicionaCliente(str);
-			out.writeObject("Recebido Ok! ");
+			System.out.println(str.codOp);
+			System.out.println("CHEGOU: "+str.nome);
+			if (str.codOp == 1) { // registrar novo cliente no nameserver
+				adicionaCliente(str);
+				out.writeObject("");	
+			} else if (str.codOp == 2) { // obter dados de host alvo
+				String nome = str.nome;
+				Padrao cli = devolveCliente(nome);
+				System.out.println(">>>>>>>>>>>>>>>>>> "+cli.getNome()+" - "+cli.getPorta());
+				out.writeObject(cli);
+			} else if (str.codOp == 3) { // apagar registro
+				
+			}
 			
-			ObjectInputStream in1 = new ObjectInputStream(sock.getInputStream());
-			ObjectOutputStream out1 = new ObjectOutputStream(
-					sock.getOutputStream());
-			String nome = (String) in1.readObject();
-			
-			Estrutura cli = devolveCliente(nome);
-
-			out1.writeObject(cli);
-
-			sock.close();
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

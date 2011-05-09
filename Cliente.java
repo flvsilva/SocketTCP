@@ -18,7 +18,7 @@ public class Cliente extends Thread {
 	private Socket conexao;
 	private ServerSocket escuta;
 	private static String msg = null;
-	private static String client;
+	public static String client;
 	// Exp Reg pra pegar o ip válido do usuario...
 	private static final String ipvalido = "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
 			+ "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
@@ -55,7 +55,7 @@ public class Cliente extends Thread {
 		Cliente.port = port;
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 
 		try {
 			Enumeration<?> nis = null;
@@ -120,11 +120,8 @@ public class Cliente extends Thread {
 				Socket sockCliente = new Socket(papo.getIp(), papo.getPorta());
 				System.out.println("Socket Criado: " + sockCliente);
 				// out.close();
-				ObjectOutputStream out1 = new ObjectOutputStream(
-						sockCliente.getOutputStream());
-
-				BufferedReader tecl = new BufferedReader(new InputStreamReader(
-						System.in));
+				ObjectOutputStream out1 = new ObjectOutputStream(sockCliente.getOutputStream());
+				BufferedReader tecl = new BufferedReader(new InputStreamReader(System.in));
 				while (true) {
 					msg = tecl.readLine();
 					if (msg == "@fim") {
@@ -169,7 +166,7 @@ public class Cliente extends Thread {
 			ss = new ServerSocket(port);
 			while (true) {
 				// TODO inicia a "escuta" na porta 'n' por possíveis mensagens!
-				System.out.println("chamooou...");
+				//System.out.println("chamooou...");
 
 				Socket as = ss.accept();
 				WorkerClient w = new WorkerClient(as);

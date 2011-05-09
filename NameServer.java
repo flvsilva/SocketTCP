@@ -6,7 +6,7 @@ import java.net.Socket;
 public class NameServer {
 		
 	// para deixer mais claro, estamos nos "livrando" das excecoes
-	public static void main(String args[]) throws Exception {
+	public static void main(String[] args) throws Exception {
 		int porta = Integer.parseInt("6660"); //TODO porta passada em linha de comando args[0]
 		// criando o socket passivo, para receber conexoes
 		// e ja coloca o mesmo para "listen" (poderia fazer isso explicitmente)
@@ -28,9 +28,7 @@ public class NameServer {
 			System.out.println("Nova conexao estabelecida ...");
 			WorkerNS w = new WorkerNS(as);
 			w.start();
-			//System.out.println("Logados:\n"+ w.usuariosLogados.toString());	
-			
-			
+
 			System.out.println("Server aguardando nova conexao ....");
 		}
 	}
