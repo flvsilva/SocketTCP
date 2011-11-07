@@ -14,7 +14,7 @@ import java.util.Enumeration;
 
 public class Cliente extends Thread {
 	private Cliente() {
-		// construtor privado :)
+		// construtor privado :).....
 	}
 
 	private Socket conexao;
